@@ -160,7 +160,7 @@ async def Htowrite_handler(message: types.Message, state: FSMContext):
         await state.finish()
 
 
-@dp.message_handler(state=Form.Htowrite) # Присабачить фото
+@dp.message_handler(state=Form.Htowrite)
 async def Lectur_handler(message, state: FSMContext):
     if message.text not in ["/start", "/restart"]:
 
@@ -291,13 +291,19 @@ async def End_handler(message: types.Message, state: FSMContext):
 @dp.message_handler(content_types='text')
 async def start(message: types.Message):
     if message.text == "/all_inf":
-        if str(message.chat.id) == str(config['meid']['id']):
+        if str(message.chat.id) == str(config['meid']['id1']):
             with open("settings/user_data.json", "rb") as fileJson:
                 df = pd.read_json(fileJson)
                 df.to_csv(r"settings/user_data.csv", index=False)
                 with open("settings/user_data.csv", "rb") as fileCSV:
-                    await bot.send_document(config['meid']['id'], fileCSV)
+                    await bot.send_document(config['meid']['id1'], fileCSV)
 
+        elif str(message.chat.id) == str(config['meid']['id2']):
+            with open("settings/user_data.json", "rb") as fileJson:
+                df = pd.read_json(fileJson)
+                df.to_csv(r"settings/user_data.csv", index=False)
+                with open("settings/user_data.csv", "rb") as fileCSV:
+                    await bot.send_document(config['meid']['id2'], fileCSV)
         else:
             await bot.send_message(
                 message.chat.id,
