@@ -1,7 +1,6 @@
 # Для бота
 from aiogram import *
 from aiogram.types import InlineKeyboardButton
-from aiogram.dispatcher import Dispatcher
 import aiogram.utils.markdown as md
 from aiogram import Bot, Dispatcher, types
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
@@ -10,6 +9,7 @@ from aiogram.dispatcher.filters import Text
 from aiogram.dispatcher.filters.state import State, StatesGroup
 from aiogram.types import ParseMode
 from aiogram.utils import executor
+
 
 import asyncio
 
@@ -58,3 +58,13 @@ bot = Bot(token=API_TOKEN)
 storage = MemoryStorage()
 dp = Dispatcher(bot, storage=storage)
 
+##############################
+
+import logging
+logging.basicConfig(
+    level=logging.INFO,
+    filename="logs.log",
+    format="%(asctime)s - %(module)s\n[%(levelname)s] %(funcName)s:\n %(lineno)d - %(message)s",
+    datefmt='%H:%M:%S',
+    encoding="utf-8"
+)
